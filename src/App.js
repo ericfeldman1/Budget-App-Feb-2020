@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+var dataSet = [
+  {amount: -10, description: 'Chipotle'},
+  {amount: 1000, description: 'Paycheck'},
+  {amount: -4.50, description: 'Coffee'},
+
+]
+
+class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.state.data = dataSet;
+    this.state.total = 0
+  }
+
+  componentWillMount() {
+    this.setState({
+      data: dataSet,
+      total: dataSet.reduce( (a,b) => {
+        return a+ b.amount;
+      }, 0)
+    });
+};
+
+add (description, amount) {
+  // ajax POST request to server
 }
 
-export default App;
+render() {
+  return (
+  <div>
+    <h1>My Budget</h1>
+    <Add onAdd={this.add} />
+    <TrasactionList transactions={this.state.data} />
+    <Balance total={this.state.total} />
+  </div>
+  );
+}
+};
+
+ReactDOM.render(<App />, document.getElementById('app'));
