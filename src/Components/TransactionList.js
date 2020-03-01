@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+export default class TransactionList extends React.Component {
+
 var TransactionList = (props) => {
 
   var txList = props.transaction.map( (transaction, idx) => (
@@ -16,3 +19,4 @@ var TransactionList = (props) => {
   )
 };
 
+}

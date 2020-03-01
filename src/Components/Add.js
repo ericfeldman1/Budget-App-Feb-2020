@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Add extends React.Component {
+export default class Add extends React.Component {
 
   constructor(props) {
   super(props);
